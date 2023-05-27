@@ -53,6 +53,7 @@ const Chat = props => {
 
   const sendHandler = () => {
     props.newMessageHandler(msgRef.current.value);
+    msgRef.current.value = "";
   }
 
   return (
@@ -63,7 +64,7 @@ const Chat = props => {
         <ChannelTitle>Front-end developers</ChannelTitle>
         <div></div>
         <ChatMessages>
-          {props.username}
+          {props.userId}
           <div style={{display: 'flex', flexDirection: 'row'}}>
             <input placeholder="message" ref={msgRef}></input>
             <button onClick={sendHandler}>Send</button>
