@@ -27,9 +27,6 @@ function App() {
         setUserId(data.userId);
       } else if (data.method === 'chat') {
         console.log('messages when onmessage: ', messages);
-        //const updatedMessages = [...messages, data.message];
-        //messages.push(data.message);
-        //console.log('updated messages when onmessage: ', updatedMessages);
         setMessages((messages) => [...messages, data.payload]);
       }
     });
@@ -44,15 +41,16 @@ function App() {
   }
   
   return (
-    <div style={{position: 'absolute', width: '100%', height: '100%'}}>
+    // <div style={{position: 'absolute', width: '100%', height: '100%'}}>
+    <>
       {userId.length > 0 &&
         <Chat userId={userId} messages={messages} newMessageHandler={newMessageHandler}/>
       }
       {userId.length == 0 &&
         <Join join={joinHandler}/>
       }
-      
-    </div>
+    </>
+    // </div>
   );
 }
 
