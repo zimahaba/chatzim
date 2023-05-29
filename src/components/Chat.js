@@ -3,7 +3,6 @@ import LeftBar from "./LeftBar";
 import styled from "styled-components";
 import avatar from '../assets/avatar.jpg';
 
-
 const ChatChannel = styled.div`
   display: flex;
   flex-direction: column;
@@ -38,9 +37,8 @@ const ChatMessages = styled.div`
 const MessageDiv = styled.div`
   display: flex;
   flex-direction: row;
-  min-height: 40px;
-  margin: 6px 0px 20px 0px;
-  
+  min-height: 60px;
+  margin: 6px 0px 6px 0px;
   font-size: 14px;
   margin-top: ${props => props.index === 0 ? 'auto' : '6px'}
 `;
@@ -129,11 +127,11 @@ const Chat = props => {
                   <img src={avatar} style={{width: '34px', height: '34px', borderRadius: '6px'}}/>
                 </Avatar>
                 <div>
-                  <div style={{marginBottom: '8px'}}>
-                    <Name>{props.userId}</Name>
+                  <div style={{marginBottom: '12px'}}>
+                    <Name>{msg.userId}</Name>
                     <DateTime>today at 2:29PM</DateTime>
                   </div>
-                  <MessageText>{msg}</MessageText>
+                  <MessageText>{msg.payload}</MessageText>
                 </div>
               </MessageDiv>
             ))}

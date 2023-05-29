@@ -27,21 +27,21 @@ function App() {
         setUserId(data.userId);
       } else if (data.method === 'chat') {
         console.log('messages when onmessage: ', messages);
-        setMessages((messages) => [...messages, data.payload]);
+        //setMessages((messages) => [...messages, data.payload]);
+        setMessages((messages) => [...messages, {channel: data.channel, userId: data.userId, payload: data.payload}]);
       }
     });
   }  
 
   const newMessageHandler = (message) => {
     console.log('messages when adding: ', messages);
-    const updatedMessages = [...messages, message];
-    console.log('updated messages when adding: ', updatedMessages);
-    setMessages((messages) => [...messages, message]);
+    //const updatedMessages = [...messages, message];
+    //console.log('updated messages when adding: ', updatedMessages);
+    setMessages((messages) => [...messages, {channel: '1', userId: userId, payload: message}]);
     webSocket.send("{\"method\":\"chat\", \"channel\":\"1\", \"userId\": \"" + userId + "\", \"payload\":\"" + message + "\"}")
   }
   
   return (
-    // <div style={{position: 'absolute', width: '100%', height: '100%'}}>
     <>
       {userId.length > 0 &&
         <Chat userId={userId} messages={messages} newMessageHandler={newMessageHandler}/>
@@ -50,7 +50,6 @@ function App() {
         <Join join={joinHandler}/>
       }
     </>
-    // </div>
   );
 }
 
